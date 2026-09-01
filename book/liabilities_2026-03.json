@@ -1,0 +1,204 @@
+{
+  "cohorts": [
+    {
+      "id": "L-PROP-GBP",
+      "class": "property",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 83425000
+        },
+        {
+          "t": 2,
+          "amount": 58398000
+        },
+        {
+          "t": 3,
+          "amount": 33370000
+        },
+        {
+          "t": 4,
+          "amount": 18771000
+        },
+        {
+          "t": 5,
+          "amount": 10428000
+        },
+        {
+          "t": 6,
+          "amount": 4171000
+        }
+      ]
+    },
+    {
+      "id": "L-PROP-USD",
+      "class": "property",
+      "currency": "USD",
+      "curve": "ust",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 91465000
+        },
+        {
+          "t": 2,
+          "amount": 64025000
+        },
+        {
+          "t": 3,
+          "amount": 36586000
+        },
+        {
+          "t": 4,
+          "amount": 20580000
+        },
+        {
+          "t": 5,
+          "amount": 11433000
+        },
+        {
+          "t": 6,
+          "amount": 4573000
+        }
+      ]
+    },
+    {
+      "id": "L-CAS-GBP",
+      "class": "casualty",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 12422000
+        },
+        {
+          "t": 2,
+          "amount": 25259000
+        },
+        {
+          "t": 3,
+          "amount": 33361000
+        },
+        {
+          "t": 4,
+          "amount": 36925000
+        },
+        {
+          "t": 5,
+          "amount": 37100000
+        },
+        {
+          "t": 6,
+          "amount": 35061000
+        },
+        {
+          "t": 7,
+          "amount": 31764000
+        },
+        {
+          "t": 8,
+          "amount": 27900000
+        },
+        {
+          "t": 9,
+          "amount": 23934000
+        },
+        {
+          "t": 10,
+          "amount": 20153000
+        },
+        {
+          "t": 11,
+          "amount": 16715000
+        },
+        {
+          "t": 12,
+          "amount": 13692000
+        },
+        {
+          "t": 13,
+          "amount": 11099000
+        },
+        {
+          "t": 14,
+          "amount": 8918000
+        },
+        {
+          "t": 15,
+          "amount": 7110000
+        }
+      ]
+    },
+    {
+      "id": "L-CAS-USD",
+      "class": "casualty",
+      "currency": "USD",
+      "curve": "ust",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 13619000
+        },
+        {
+          "t": 2,
+          "amount": 27693000
+        },
+        {
+          "t": 3,
+          "amount": 36575000
+        },
+        {
+          "t": 4,
+          "amount": 40484000
+        },
+        {
+          "t": 5,
+          "amount": 40675000
+        },
+        {
+          "t": 6,
+          "amount": 38440000
+        },
+        {
+          "t": 7,
+          "amount": 34825000
+        },
+        {
+          "t": 8,
+          "amount": 30588000
+        },
+        {
+          "t": 9,
+          "amount": 26240000
+        },
+        {
+          "t": 10,
+          "amount": 22095000
+        },
+        {
+          "t": 11,
+          "amount": 18326000
+        },
+        {
+          "t": 12,
+          "amount": 15012000
+        },
+        {
+          "t": 13,
+          "amount": 12169000
+        },
+        {
+          "t": 14,
+          "amount": 9777000
+        },
+        {
+          "t": 15,
+          "amount": 7795000
+        }
+      ]
+    }
+  ]
+}

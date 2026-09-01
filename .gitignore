@@ -1,0 +1,20 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+# outputs/ is COMMITTED: the saved cycle replays against these run
+# directories, so a clone without them cannot open the pre-run cycle.
+# Only scratch runs are ignored.
+outputs/**/v9/
+*.sqlite
+*.sqlite3
+node_modules/
+.pytest_cache/
+*.sqlite-wal
+*.sqlite-shm
+build/
+dist/
+.pytest_cache/
+three-rooms.exe
+None
+run_all.sh

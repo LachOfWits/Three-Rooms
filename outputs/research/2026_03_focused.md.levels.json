@@ -1,0 +1,35 @@
+{
+ "independent_levels": {
+  "ftse100": {
+   "value": 10176.5,
+   "unit": "index",
+   "source_url": "https://finance.yahoo.com/quote/%5EFTSE/history/",
+   "asof": "2026-03-31"
+  },
+  "sp500": {
+   "value": 6528.52002,
+   "unit": "index",
+   "source_url": "https://finance.yahoo.com/quote/%5EGSPC/history/",
+   "asof": "2026-03-31"
+  },
+  "sx5e": {
+   "value": 5569.72998,
+   "unit": "index",
+   "source_url": "https://finance.yahoo.com/quote/%5ESTOXX50E/history/",
+   "asof": "2026-03-31"
+  },
+  "gbpusd": {
+   "value": 1.324328,
+   "unit": "USD per GBP",
+   "source_url": "https://finance.yahoo.com/quote/GBPUSD%3DX/history/",
+   "asof": "2026-03-31"
+  },
+  "ust_10y": {
+   "value": 4.311,
+   "unit": "%",
+   "source_url": "https://finance.yahoo.com/quote/%5ETNX/history/",
+   "asof": "2026-03-31"
+  }
+ },
+ "independent_unsourced": []
+}

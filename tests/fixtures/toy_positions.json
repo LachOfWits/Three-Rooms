@@ -1,0 +1,67 @@
+{
+  "ref_asof": "2026-06-30",
+  "ref_index_levels": {
+    "FTSE100": 8000.0,
+    "SP500": 6000.0,
+    "SX5E": 5200.0
+  },
+  "positions": [
+    {
+      "id": "T001",
+      "type": "govt_bond",
+      "name": "Toy gilt 5% 8y",
+      "isin": "GB0000000001",
+      "currency": "GBP",
+      "notional": 1000000,
+      "coupon": 0.05,
+      "maturity_years": 8,
+      "curve": "gbp_gilt"
+    },
+    {
+      "id": "T002",
+      "type": "corp_bond",
+      "name": "Toy USD BBB 4.5% 2y",
+      "isin": "US0000000002",
+      "currency": "USD",
+      "notional": 2000000,
+      "coupon": 0.045,
+      "maturity_years": 2,
+      "curve": "ust",
+      "rating": "BBB"
+    },
+    {
+      "id": "T003",
+      "type": "equity",
+      "name": "Toy UK equity",
+      "isin": "GB0000000003",
+      "currency": "GBP",
+      "index": "FTSE100",
+      "quantity": 10000,
+      "ref_price": 10.0
+    },
+    {
+      "id": "T004",
+      "type": "equity",
+      "name": "Toy US equity",
+      "isin": "US0000000004",
+      "currency": "USD",
+      "index": "SP500",
+      "quantity": 5000,
+      "ref_price": 40.0
+    },
+    {
+      "id": "T005",
+      "type": "cash",
+      "name": "GBP cash",
+      "currency": "GBP",
+      "amount": 500000
+    },
+    {
+      "id": "T006",
+      "type": "cash",
+      "name": "USD cash",
+      "currency": "USD",
+      "amount": 1000000
+    }
+  ]
+}

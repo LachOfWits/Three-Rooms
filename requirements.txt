@@ -1,0 +1,11 @@
+numpy==2.5.2   # pinned: seeded Generator streams must be bit-reproducible across machines (NEP 19)
+pandas
+scipy
+pyyaml
+requests
+python-dotenv
+fastapi
+uvicorn[standard]
+sse-starlette
+anthropic
+pytest

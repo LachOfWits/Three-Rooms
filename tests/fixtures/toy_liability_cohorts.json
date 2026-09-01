@@ -1,0 +1,140 @@
+{
+  "cohorts": [
+    {
+      "id": "L-PROP-GBP",
+      "class": "property",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 100000
+        },
+        {
+          "t": 2,
+          "amount": 100000
+        },
+        {
+          "t": 3,
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "id": "L-PROP-USD",
+      "class": "property",
+      "currency": "USD",
+      "curve": "ust",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 40000
+        },
+        {
+          "t": 2,
+          "amount": 40000
+        },
+        {
+          "t": 3,
+          "amount": 40000
+        }
+      ]
+    },
+    {
+      "id": "L-CAS-GBP",
+      "class": "casualty",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 60000
+        },
+        {
+          "t": 2,
+          "amount": 60000
+        },
+        {
+          "t": 3,
+          "amount": 60000
+        },
+        {
+          "t": 4,
+          "amount": 60000
+        },
+        {
+          "t": 5,
+          "amount": 60000
+        },
+        {
+          "t": 6,
+          "amount": 60000
+        },
+        {
+          "t": 7,
+          "amount": 60000
+        },
+        {
+          "t": 8,
+          "amount": 60000
+        },
+        {
+          "t": 9,
+          "amount": 60000
+        },
+        {
+          "t": 10,
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "id": "L-CAS-USD",
+      "class": "casualty",
+      "currency": "USD",
+      "curve": "ust",
+      "cashflows": [
+        {
+          "t": 1,
+          "amount": 50000
+        },
+        {
+          "t": 2,
+          "amount": 50000
+        },
+        {
+          "t": 3,
+          "amount": 50000
+        },
+        {
+          "t": 4,
+          "amount": 50000
+        },
+        {
+          "t": 5,
+          "amount": 50000
+        },
+        {
+          "t": 6,
+          "amount": 50000
+        },
+        {
+          "t": 7,
+          "amount": 50000
+        },
+        {
+          "t": 8,
+          "amount": 50000
+        },
+        {
+          "t": 9,
+          "amount": 50000
+        },
+        {
+          "t": 10,
+          "amount": 50000
+        }
+      ]
+    }
+  ]
+}

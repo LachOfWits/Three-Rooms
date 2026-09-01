@@ -1,0 +1,399 @@
+{
+  "meta": {
+    "seed": 20260831,
+    "n_sims": 50000,
+    "assumptions_path": "assumptions/2026-02.yaml",
+    "assumptions_sha256": "358dcc86d20fb05eec2ea5cc0990e6773e7009f5d997b03c5fbe27adc0032819",
+    "book_path": "book/positions.json",
+    "book_sha256": "254873dbf2c11c867a8663f88843e07eec9e194c764e99fc749180ea7fa33ace",
+    "liabilities_path": "book/liabilities.json",
+    "liabilities_sha256": "4259cdb22a6789ec3273fa5facad91791f1494946dcf01b4631c6661e2ca2919",
+    "engine_git_rev": "461ee129cd3dcca005b2245412fac40e83b98e51",
+    "asof": "2026-02-27"
+  },
+  "positions": [
+    {
+      "id": "P001",
+      "name": "UKT 4.25 2027",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 47476303.787236385
+    },
+    {
+      "id": "P002",
+      "name": "UKT 4.75 2030",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 49067162.9028583
+    },
+    {
+      "id": "P003",
+      "name": "UKT 4.25 2032",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 46022591.41562545
+    },
+    {
+      "id": "P004",
+      "name": "UKT 4.25 2036",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 26963414.322335698
+    },
+    {
+      "id": "P005",
+      "name": "UKT 4.50 2042",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 15200147.847711246
+    },
+    {
+      "id": "P006",
+      "name": "UKT 4.25 2046",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 10191856.851091053
+    },
+    {
+      "id": "P007",
+      "name": "UST 2.875 2028",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 45881973.615846485
+    },
+    {
+      "id": "P008",
+      "name": "UST 0.625 2030",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 37837869.95950412
+    },
+    {
+      "id": "P009",
+      "name": "UST 3.875 2033",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 24987817.176524807
+    },
+    {
+      "id": "P010",
+      "name": "UST 4.00 2034",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 19444471.874301318
+    },
+    {
+      "id": "P011",
+      "name": "UST 2.00 2050",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 7221427.611672055
+    },
+    {
+      "id": "P012",
+      "name": "UST 4.00 2052",
+      "type": "govt_bond",
+      "currency": "USD",
+      "market_value_gbp": 8395733.906642264
+    },
+    {
+      "id": "P013",
+      "name": "Apple Inc 3.85% 2043",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 7789774.416249458
+    },
+    {
+      "id": "P014",
+      "name": "Microsoft Corp 3.45% 2036",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 13042870.955150176
+    },
+    {
+      "id": "P015",
+      "name": "Nestle Holdings Inc 1.375% 2033",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 17847474.220163226
+    },
+    {
+      "id": "P016",
+      "name": "Wellcome Trust Finance 4.625% 2036",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 12877781.496560773
+    },
+    {
+      "id": "P017",
+      "name": "HSBC Holdings 6.00% 2040",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 9864927.23443121
+    },
+    {
+      "id": "P018",
+      "name": "JPMorgan Chase 3.625% 2027",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 30507457.967637103
+    },
+    {
+      "id": "P019",
+      "name": "Total Capital Intl 3.455% 2029",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 25216873.743309002
+    },
+    {
+      "id": "P020",
+      "name": "Unilever 1.875% 2029",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 24170129.800789285
+    },
+    {
+      "id": "P021",
+      "name": "Lloyds Banking Group 2.707% 2035",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 13792948.154434614
+    },
+    {
+      "id": "P022",
+      "name": "Barclays PLC 3.25% 2033",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 19227868.681136638
+    },
+    {
+      "id": "P023",
+      "name": "AT&T Inc 4.30% 2042",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 7592321.349489874
+    },
+    {
+      "id": "P024",
+      "name": "Verizon Communications 4.329% 2028",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 27075146.679294113
+    },
+    {
+      "id": "P025",
+      "name": "Vodafone Group 5.90% 2032",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 19558196.70789781
+    },
+    {
+      "id": "P026",
+      "name": "Ocado Group 10.50% 2029",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 11564666.358352242
+    },
+    {
+      "id": "P027",
+      "name": "Virgin Media Secured Fin 4.25% 2030",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 13520342.668525983
+    },
+    {
+      "id": "P028",
+      "name": "Ford Motor Credit 7.35% 2027",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 14936321.9163687
+    },
+    {
+      "id": "PCF-001",
+      "name": "PC Fund I - Senior Direct Lending (GBP)",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 18012976.848119047
+    },
+    {
+      "id": "PCF-002",
+      "name": "PC Fund II - Mid-Market Lending (USD)",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 14981126.073376212
+    },
+    {
+      "id": "PCF-003",
+      "name": "PC Fund III - Opportunistic Credit (USD)",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 12978698.330895234
+    },
+    {
+      "id": "PCF-004",
+      "name": "PC Fund IV - Real Estate Debt (GBP)",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 14010093.104092592
+    },
+    {
+      "id": "P029",
+      "name": "AstraZeneca PLC",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 22089244.110746127
+    },
+    {
+      "id": "P030",
+      "name": "Shell PLC",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 22085178.273111213
+    },
+    {
+      "id": "P031",
+      "name": "HSBC Holdings PLC",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 16062969.998435788
+    },
+    {
+      "id": "P032",
+      "name": "Unilever PLC",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 15060013.186297512
+    },
+    {
+      "id": "P033",
+      "name": "Rio Tinto PLC",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 15057754.387611449
+    },
+    {
+      "id": "P034",
+      "name": "Apple Inc",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 18236513.576873098
+    },
+    {
+      "id": "P035",
+      "name": "Microsoft Corp",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 20081704.874292683
+    },
+    {
+      "id": "P036",
+      "name": "Alphabet Inc Class A",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 14604133.601034872
+    },
+    {
+      "id": "P037",
+      "name": "Johnson & Johnson",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 12771468.69081737
+    },
+    {
+      "id": "P038",
+      "name": "JPMorgan Chase & Co",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 14596985.390946727
+    },
+    {
+      "id": "P039",
+      "name": "ASML Holding NV",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 19276392.151003223
+    },
+    {
+      "id": "P040",
+      "name": "SAP SE",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 16407621.659292765
+    },
+    {
+      "id": "P041",
+      "name": "TotalEnergies SE",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 14481913.365974573
+    },
+    {
+      "id": "P042",
+      "name": "GBP cash (main)",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 40000000.0
+    },
+    {
+      "id": "P043",
+      "name": "GBP cash (collateral)",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 15000000.0
+    },
+    {
+      "id": "P044",
+      "name": "GBP cash (margin)",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 10000000.0
+    },
+    {
+      "id": "P045",
+      "name": "USD cash (main)",
+      "type": "cash",
+      "currency": "USD",
+      "market_value_gbp": 14824697.946779335
+    },
+    {
+      "id": "P046",
+      "name": "USD cash (custody)",
+      "type": "cash",
+      "currency": "USD",
+      "market_value_gbp": 9636053.665406568
+    }
+  ],
+  "asset_total_gbp": 977531412.8562458,
+  "liability_pv_gbp": 818817794.8011742,
+  "liability_cohorts": [
+    {
+      "id": "L-PROP-GBP",
+      "class": "property",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "pv_gbp": 189516105.71577615
+    },
+    {
+      "id": "L-PROP-USD",
+      "class": "property",
+      "currency": "USD",
+      "curve": "ust",
+      "pv_gbp": 153837454.3308065
+    },
+    {
+      "id": "L-CAS-GBP",
+      "class": "casualty",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "pv_gbp": 262785240.62799945
+    },
+    {
+      "id": "L-CAS-USD",
+      "class": "casualty",
+      "currency": "USD",
+      "curve": "ust",
+      "pv_gbp": 212678994.12659204
+    }
+  ],
+  "surplus_gbp": 158713618.0550716
+}

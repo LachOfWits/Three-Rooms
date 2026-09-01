@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "prev_dir": "tests/fixtures/out_prev/",
+    "curr_dir": "tests/fixtures/out_next/",
+    "prev_assumptions_path": "tests/fixtures/toy_assumptions.yaml",
+    "prev_assumptions_sha256": "a50800f2db7f1353ff146866f87c5a683c1d46f7b043fe974453d0ac8a75c92a",
+    "curr_assumptions_path": "tests/fixtures/toy_assumptions_next.yaml",
+    "curr_assumptions_sha256": "71e6de4c7e9a9f260a2ed15cc9350be39d9da98c1dfbed9eefeb98bc873a7600",
+    "book_path": "tests/fixtures/toy_positions.json",
+    "book_sha256": "d901b2b9485e33bc4b510eafe11cd1db3f589b2fb79d6c0c4266f720db6c02c4",
+    "liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "seed": 20260831,
+    "n_sims": 10000,
+    "engine_git_rev": "5550ea086b3299963549e2c7f1224e72d3bb562e",
+    "step_order": [
+      "gbp_swap",
+      "gbp_gilt",
+      "ust",
+      "spread",
+      "equity",
+      "fx",
+      "vcv",
+      "book"
+    ],
+    "note": "Totals are from the stored prev/curr outputs; steps are sequential recomputations from the prev state. The residual is explicit and never absorbed into a step."
+  },
+  "mtm": {
+    "prev_surplus_gbp": 3410262.367967372,
+    "curr_surplus_gbp": 3287750.689322241,
+    "total_change_gbp": -122511.67864513071,
+    "recomputed_prev_surplus_gbp": 3410262.367967372,
+    "recomputed_curr_surplus_gbp": 3287750.689322241,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": 13146.476564336102
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -30873.29842827376
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": 5975.502846629359
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -12657.44067960186
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -333.33333333348855
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": -97769.58561488707
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 0.0
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": 0.0
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": -122511.67864513071,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": -122511.67864513071,
+      "total_gbp": -122511.67864513071,
+      "additive_within_1e-6": true
+    }
+  },
+  "var": {
+    "prev_aggregate_var_gbp": 471444.8517534748,
+    "curr_aggregate_var_gbp": 491356.2995764225,
+    "total_change_gbp": 19911.447822947695,
+    "recomputed_prev_var_gbp": 471444.8517534748,
+    "recomputed_curr_var_gbp": 491356.2995764225,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": -155.0823238507146
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -782.2150265355594
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": 1196.021781330055
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -2532.91635413724
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -806.9918061356875
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": -16833.15859924798
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 39825.79015152482
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": 0.0
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": 19911.447822947695,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": 19911.447822947695,
+      "total_gbp": 19911.447822947695,
+      "additive_within_1e-6": true
+    }
+  }
+}

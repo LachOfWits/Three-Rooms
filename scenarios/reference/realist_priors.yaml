@@ -1,0 +1,120 @@
+# realist_priors.yaml — @realist's fixed, experience-based reasonableness bands
+# (SPEC-APP section 5, Room 3). Versioned reference data, reachable via
+# read_reference. DELIBERATELY independent of any month's assumptions: these
+# are "what a 99.5% 1-year standalone VaR usually looks like as a % of market
+# value" priors, so a wrong assumption cannot launder itself through the check.
+#
+# Units: every band is in PERCENT. Position bands bound
+#   100 * standalone_var_gbp / market_value_gbp
+# (from var_standalone_positions.csv). The aggregate band bounds
+#   100 * aggregate_var_gbp / asset_total_gbp
+# and the block bands bound 100 * block_standalone_var / asset_total_gbp
+# (var_standalone_factors.json blocks vs valuation.json asset total).
+#
+# CALIBRATION (documented, reproducible):
+# Ratios were computed for EVERY position in EVERY clean regenerated run —
+# the eight month-ends outputs/2025-12 .. outputs/2026-07 (50-position book,
+# 21-factor assumptions, seed 20260831 / 50,000 sims), outputs/2026-03_marbook
+# and its bit-identical re-run scenarios/seeded/preview_out/clean_march — and
+# bands were set to enclose the observed clean range with margin on both
+# sides. Observed clean extremes are quoted in the comments per band.
+# Result (verified by script): the clean runs produce ZERO out-of-band
+# positions, and aggregate and block ratios sit inside their bands for all
+# ten runs (clean aggregate range 7.15%..8.06% of assets).
+#
+# v3 (portfolio-level bands only). The POSITION bands below are unchanged
+# from v2 and still enclose every clean run with zero outliers — a position's
+# standalone VaR over its own market value does not depend on the liability
+# model. The AGGREGATE and BLOCK bands are ratios to total assets of a
+# SURPLUS VaR, and they moved when the liability book was rebuilt to the
+# four-cohort P&C shape (duration 4.33 vs the earlier ~9.4 annuity book):
+# closing the duration gap cut the ir_gbp and fx blocks by roughly 90% and
+# the aggregate from ~14% of assets to ~7.4%. The v2 portfolio bands were
+# calibrated on the old book and flagged every clean run — recalibrated here
+# against the current outputs.
+# Discrimination (verified on isolation runs, same seed/sims):
+#  - D1 (gbp_swap 10y vol digit-slip): no book position prices off the
+#    gbp_swap curve (it is the liability discount / TRS reference curve), so
+#    position-level ratios do not move. With the duration gap closed the
+#    AGGREGATE barely moves either (7.363% vs a clean 7.374%, inside band —
+#    it is now a small block), so the only portfolio-level signal left is the
+#    ir_gbp block itself: 1.355% of assets vs band [1.4, 1.7]. That band is
+#    deliberately tighter than the others (3% margin each side of the clean
+#    range 1.446..1.608) — stated plainly because it is the price of keeping
+#    the D1 corroboration once the block is small. @realist remains
+#    corroboration only; D1's scored route is @vcv-sentinel's recomputation.
+#  - D4 (all four PC proxies re-rated HY -> CCC): every PCF position lands
+#    ABOVE its private-credit band — GBP funds 14.02% vs [7, 13], USD funds
+#    19.28% vs [13, 18]; three blocks breach too — credit 1.533% (above
+#    [1.1, 1.5]), ir_usd 0.847% (above [0.6, 0.8]) and fx 0.367% (BELOW
+#    [0.4, 0.9], because marking the sleeve down at a distressed spread
+#    shrinks the USD asset leg that the USD cohorts hedge).
+#  - D2 (P028 re-rated HY -> A) moves nothing outside band: it is a single
+#    position's spread bucket, and its scored route is @holdings.
+# Rating bands use the book's buckets (AA/A/BBB/HY). Private credit is keyed
+# by asset_class + currency, NOT by the selected proxy rating — deliberately,
+# so a mis-chosen proxy rating cannot move the goalposts of its own check.
+# USD-denominated positions read high vs GBP peers because full-factor
+# standalone VaR includes the unhedged GBPUSD leg (~15% standalone on its
+# own); bands are therefore split by currency. Maturity buckets:
+# short <= 3y, medium 4-10y, long > 10y (integer maturity_years).
+# GBP cash has zero market risk in this model; its band is centred on zero.
+
+meta:
+  version: 3
+  calibrated_against:
+    - outputs/2025-12 .. outputs/2026-07 (eight clean month-end runs)
+    - outputs/2026-03_marbook
+    - scenarios/seeded/preview_out/clean_march
+  seed: 20260831
+  sims: 50000
+  units: percent
+  maturity_buckets: {short: "<=3y", medium: "4-10y", long: ">10y"}
+
+aggregate_band:      # aggregate 99.5% VaR as % of total assets (clean 7.15..8.06)
+  low: 6.8
+  high: 8.6
+
+block_bands:         # block standalone VaR as % of total assets
+  ir_gbp: {low: 1.4, high: 1.7}     # clean 1.446..1.608; D1 -> 1.355 (below)
+  ir_usd: {low: 0.6, high: 0.8}     # clean 0.644..0.733; D4 -> 0.847 (above)
+  credit: {low: 1.1, high: 1.5}     # clean 1.208..1.362; D4 -> 1.533 (above)
+  equity: {low: 5.4, high: 7.3}     # clean 5.771..6.901
+  fx:     {low: 0.4, high: 0.9}     # clean 0.539..0.757; D4 -> 0.367 (below)
+
+position_bands:
+  cash:
+    GBP: {low: -0.5, high: 0.5}     # clean ~0.00 (base currency, no market risk)
+    USD: {low: 12.0, high: 18.0}    # clean 14.91..15.64 (pure FX leg)
+  govt_bond:
+    GBP:
+      short:  {low: 0.5,  high: 4.0}    # clean 1.51..1.79
+      medium: {low: 4.0,  high: 16.0}   # clean 5.79..14.15
+      long:   {low: 15.0, high: 24.0}   # clean 17.89..21.00
+    USD:
+      short:  {low: 13.0, high: 18.0}   # clean 15.25..15.89
+      medium: {low: 14.0, high: 21.0}   # clean 16.18..18.95
+      long:   {low: 22.0, high: 32.0}   # clean 25.53..29.05
+  corp_bond:
+    GBP:
+      AA:  {short: {low: 2.0, high: 6.0},   medium: {low: 8.0, high: 16.0},   long: {low: 12.0, high: 18.0}}   # medium clean 10.38..13.96
+      A:   {short: {low: 3.0, high: 7.0},   medium: {low: 10.0, high: 16.0},  long: {low: 13.0, high: 19.0}}   # clean: short 4.37..5.15, medium 12.74..13.70, long 15.38..16.31
+      BBB: {short: {low: 4.0, high: 8.0},   medium: {low: 6.0, high: 12.0},   long: {low: 14.0, high: 20.0}}   # medium clean 8.23..9.75
+      HY:  {short: {low: 5.0, high: 10.0},  medium: {low: 8.0, high: 16.0},   long: {low: 12.0, high: 20.0}}   # short clean 6.89..8.16
+    USD:
+      AA:  {short: {low: 13.0, high: 17.0}, medium: {low: 17.0, high: 22.0},  long: {low: 20.0, high: 26.0}}   # medium clean 19.18..19.71, long 22.15..22.70
+      A:   {short: {low: 13.0, high: 18.0}, medium: {low: 15.0, high: 20.0},  long: {low: 18.0, high: 25.0}}   # short clean 15.02..16.12
+      BBB: {short: {low: 13.0, high: 18.0}, medium: {low: 16.0, high: 22.0},  long: {low: 19.0, high: 25.0}}   # short clean 15.19..15.84, long 21.33..21.70
+      HY:  {short: {low: 13.0, high: 18.0}, medium: {low: 15.0, high: 21.0},  long: {low: 17.0, high: 25.0}}   # short clean 14.89..15.62
+  private_credit:    # keyed by asset_class + currency, NEVER by proxy rating
+    GBP: {low: 7.0,  high: 13.0}    # clean 9.53..10.52; D4 -> 14.02 (above)
+    USD: {low: 13.0, high: 18.0}    # clean 16.30..16.97; D4 -> 19.28 (above)
+  equity:            # keyed by index; USD/EUR-proxy names carry the FX leg
+    FTSE100: {low: 24.0, high: 34.0}    # clean 27.09..30.39
+    SP500:   {low: 38.0, high: 46.0}    # clean 41.00..42.76
+    SX5E:    {low: 34.0, high: 45.0}    # clean 37.34..41.84
+
+# NB every band bound above is exactly representable at one decimal place.
+# @realist quotes bands as `f"{low:.1f}"`-`f"{high:.1f}%"`, and the citation
+# gate binds the printed token to the claim's value — a bound of 1.15 would
+# print "1.1" and suppress the post. Keep new bounds at 1dp.

@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "seed": 20260831,
+    "n_sims": 10000,
+    "assumptions_path": "tests/fixtures/toy_assumptions.yaml",
+    "assumptions_sha256": "a50800f2db7f1353ff146866f87c5a683c1d46f7b043fe974453d0ac8a75c92a",
+    "book_path": "tests/fixtures/toy_positions.json",
+    "book_sha256": "d901b2b9485e33bc4b510eafe11cd1db3f589b2fb79d6c0c4266f720db6c02c4",
+    "liabilities_path": "tests/fixtures/toy_liabilities.json",
+    "liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "engine_git_rev": "5550ea086b3299963549e2c7f1224e72d3bb562e",
+    "asof": "2026-06-30"
+  },
+  "positions": [
+    {
+      "id": "T001",
+      "name": "Toy gilt 5% 8y",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 1067327.4487495038
+    },
+    {
+      "id": "T002",
+      "name": "Toy USD BBB 4.5% 2y",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 1594024.4971533713
+    },
+    {
+      "id": "T003",
+      "name": "Toy UK equity",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 100000.0
+    },
+    {
+      "id": "T004",
+      "name": "Toy US equity",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 160000.0
+    },
+    {
+      "id": "T005",
+      "name": "GBP cash",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 500000.0
+    },
+    {
+      "id": "T006",
+      "name": "USD cash",
+      "type": "cash",
+      "currency": "USD",
+      "market_value_gbp": 800000.0
+    }
+  ],
+  "asset_total_gbp": 4221351.945902875,
+  "liability_pv_gbp": 811089.5779355026,
+  "surplus_gbp": 3410262.367967372
+}

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "seed": 20260831,
+    "n_sims": 3000,
+    "assumptions_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_assumptions_next.yaml",
+    "assumptions_sha256": "1384d6d3649c99381b642da5b304e84ba76a0ce2fb772281beded091c975f7ed",
+    "book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_positions.json",
+    "book_sha256": "d901b2b9485e33bc4b510eafe11cd1db3f589b2fb79d6c0c4266f720db6c02c4",
+    "liabilities_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_liability_cohorts_next.json",
+    "liabilities_sha256": "ec353472c755c63992ddbcc68cc9d62856da750d45d2293fa9f9cf4febff58f8",
+    "engine_git_rev": "4b86ebdc1ae3ad2ccfe626ff172f45c688cfc837",
+    "asof": "2026-07-31"
+  },
+  "positions": [
+    {
+      "id": "T001",
+      "name": "Toy gilt 5% 8y",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 1036454.1503212294
+    },
+    {
+      "id": "T002",
+      "name": "Toy USD BBB 4.5% 2y",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 1526290.9224234608
+    },
+    {
+      "id": "T003",
+      "name": "Toy UK equity",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 105000.0
+    },
+    {
+      "id": "T004",
+      "name": "Toy US equity",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 148717.94871794872
+    },
+    {
+      "id": "T005",
+      "name": "GBP cash",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 500000.0
+    },
+    {
+      "id": "T006",
+      "name": "USD cash",
+      "type": "cash",
+      "currency": "USD",
+      "market_value_gbp": 769230.7692307692
+    }
+  ],
+  "asset_total_gbp": 4085693.790693408,
+  "liability_pv_gbp": 1346614.7523284443,
+  "liability_cohorts": [
+    {
+      "id": "L-PROP-GBP",
+      "class": "property",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "pv_gbp": 317830.426158108
+    },
+    {
+      "id": "L-PROP-USD",
+      "class": "property",
+      "currency": "USD",
+      "curve": "ust",
+      "pv_gbp": 100443.77137521002
+    },
+    {
+      "id": "L-CAS-GBP",
+      "class": "casualty",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "pv_gbp": 550580.739946105
+    },
+    {
+      "id": "L-CAS-USD",
+      "class": "casualty",
+      "currency": "USD",
+      "curve": "ust",
+      "pv_gbp": 377759.81484902103
+    }
+  ],
+  "surplus_gbp": 2739079.0383649636
+}

@@ -1,0 +1,38 @@
+{
+  "n_sims": 3000,
+  "pnl_columns": [
+    "T001",
+    "T002",
+    "T003",
+    "T004",
+    "T005",
+    "T006",
+    "PCF-100",
+    "LIABILITIES"
+  ],
+  "factor_columns": [
+    "gbp_swap_2",
+    "gbp_swap_5",
+    "gbp_swap_10",
+    "gbp_swap_20",
+    "gbp_gilt_2",
+    "gbp_gilt_5",
+    "gbp_gilt_10",
+    "gbp_gilt_20",
+    "ust_2",
+    "ust_5",
+    "ust_10",
+    "ust_20",
+    "spread_AA",
+    "spread_A",
+    "spread_BBB",
+    "spread_HY",
+    "spread_CCC",
+    "eq_FTSE100",
+    "eq_SP500",
+    "eq_SX5E",
+    "fx_GBPUSD"
+  ],
+  "dtype": "float32",
+  "note": "P&L vs base state, GBP. Factor columns are the simulated shocks in SPEC \u00a72 order."
+}

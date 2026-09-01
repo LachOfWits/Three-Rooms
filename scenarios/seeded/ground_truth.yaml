@@ -1,0 +1,391 @@
+# Ground truth for the seeded-defect demo pair (SPEC-APP section 6). v2 —
+# refreshed against the regenerated 50-position book (4 private credit funds,
+# 21-factor assumptions incl. CCC), seed 20260831 / 50,000 sims.
+# Read by the scorecard evaluator ONLY. Agents and mock checks must NEVER read
+# this file — defects are found by the checks, or not at all (SPEC-APP section 2).
+meta:
+  version: 2
+  demo_pair:
+    prev: '2026-02'
+    curr: '2026-03'
+    prev_asof: '2026-02-27'
+    curr_asof: '2026-03-31'
+  seeded_files:
+    - scenarios/seeded/assumptions_2026-03_D1.yaml
+    - scenarios/seeded/positions_D2.json
+    - scenarios/seeded/draft_report_D3.md
+    - scenarios/seeded/positions_D4.json
+    - scenarios/seeded/positions_D2_D4.json   # combined demo book, see below
+  combined_demo_book:
+    file: scenarios/seeded/positions_D2_D4.json
+    base: book/positions_2026-03.json         # the March (+15% PC) book
+    carries: [D2, D4]
+    note: >-
+      One book so a SINGLE seeded run can carry D1 (seeded assumptions), D2
+      (P028 Ford Motor Credit re-rated HY -> A) and D4 (all four PC proxies
+      HY -> CCC) at once, alongside the must_flag_changes allocation move
+      (it is built on the March book, so the +15% PC sleeve is present).
+      Identical to positions_D4.json except P028.rating. The per-defect
+      isolation books (positions_D2.json, positions_D4.json) and their
+      materiality figures above are unchanged and remain the reference.
+      Pair it with book/liabilities_2026-03.json so the reserve side carries
+      the same period's written business.
+  reference_files:   # mock detection references (agents MAY read these)
+    - scenarios/reference/ratings_ref.csv      # D2 route
+    - scenarios/reference/pc_proxy_ref.csv     # D4 route
+    - scenarios/reference/realist_priors.yaml  # @realist bands (corroboration only)
+  base_outputs:
+    curr: outputs/2026-03/                       # baseline book at March assumptions
+    curr_march_book: outputs/2026-03_marbook/    # March (+15% PC) book — the D4 baseline
+    prev: outputs/2026-02/
+    attribution: outputs/attr_2026-02_to_2026-03/
+    attribution_books: outputs/attr_2026-02_to_2026-03_books/  # two-book pair, step 8 live
+  preview_runs:
+    note: >-
+      All at seed 20260831 / 50,000 sims, REGENERATED against the four-cohort
+      P&C liability book (book/liabilities.json duration 4.33; the March pair
+      uses book/liabilities_2026-03.json). The root preview_out/ is the
+      combined D1+D2 seeded run on the BASELINE book; d1_d2_d4/ is the
+      combined demo run on the MARCH book (what the app's single seeded run
+      executes). Block-level effects remain exactly separable: the D1+D2
+      run's ir_gbp block VaR equals the D1-only run's to the penny
+      (12,936,603.11) and its credit block VaR and P028 figures equal the
+      D2-only run's to the penny (12,180,223.26; P028 MV 15,529,431.32,
+      standalone VaR 2,368,562.29). Only the AGGREGATE carries a small
+      cross-term.
+    combined_d1_d2:
+      out_dir: scenarios/seeded/preview_out/
+      command: >-
+        python -m engine.run
+        --assumptions scenarios/seeded/assumptions_2026-03_D1.yaml
+        --book scenarios/seeded/positions_D2.json
+        --liabilities book/liabilities.json
+        --out scenarios/seeded/preview_out/ --seed 20260831 --sims 50000
+      aggregate_var_gbp: 70018676.96
+      sum_standalone_blocks_gbp: 95563490.19
+    combined_d1_d2_d4:
+      out_dir: scenarios/seeded/preview_out/d1_d2_d4/
+      command: >-
+        python -m engine.run
+        --assumptions scenarios/seeded/assumptions_2026-03_D1.yaml
+        --book scenarios/seeded/positions_D2_D4.json
+        --liabilities book/liabilities_2026-03.json
+        --out scenarios/seeded/preview_out/d1_d2_d4/ --seed 20260831 --sims 50000
+      aggregate_var_gbp: 71540283.17
+      sum_standalone_blocks_gbp: 97219339.71
+      note: >-
+        The single seeded run of the app demo: D1 in the assumptions, D2 and
+        D4 in one book, on the March (+15% PC) book and the matching March
+        cohorts, so the must_flag_changes allocation move is present too.
+    d1_only:
+      out_dir: scenarios/seeded/preview_out/d1_only/   # D1 assumptions + base book
+      aggregate_var_gbp: 70299070.30
+    d2_only:
+      out_dir: scenarios/seeded/preview_out/d2_only/   # base assumptions + D2 book
+      aggregate_var_gbp: 70175905.86
+    d4_only:
+      out_dir: scenarios/seeded/preview_out/d4_only/   # base assumptions + D4 book + March cohorts
+      aggregate_var_gbp: 72150071.08
+    clean_march:
+      out_dir: scenarios/seeded/preview_out/clean_march/  # base assumptions + March book + March cohorts
+      aggregate_var_gbp: 72263842.87
+      note: bit-identical to outputs/2026-03_marbook/ (reproducibility control)
+
+defects:
+  - id: D1
+    room: 1
+    file: scenarios/seeded/assumptions_2026-03_D1.yaml
+    field: vols.gbp_swap.10
+    original: 0.007316
+    seeded: 0.004732
+    corruption: >-
+      Digit-slip corruption: a stray '4' keystroke inserted into 0.007316
+      (-> 0.0047316), stored at the file's 6dp precision as 0.004732. The
+      seeded value is 35.3% below the calibrated vol and visibly incoherent
+      with the neighbouring tenors (2y 0.007623, 5y 0.007523, 20y 0.007547 —
+      a flat ~0.0075 term structure with a lone ~0.0047 dip at 10y). The rest
+      of the file is byte-identical to assumptions/2026-03.yaml (21 factors,
+      CCC included).
+    detection_route: >-
+      recompute_vol('gbp_swap', 't10', '2026-03-31', 504) reproduces ~0.007316
+      from data/processed/gbp_swap.csv; or neighbour-tenor comparison within
+      the seeded file (10y vol ~35% below the 2y/5y/20y level with no such dip
+      in any other curve's vol term structure or in any prior month).
+    severity: high
+    direction: understatement
+    materiality:   # d1_only isolation run vs outputs/2026-03 (same seed/sims)
+      base_ir_gbp_block_var_gbp: 14577142.80
+      seeded_ir_gbp_block_var_gbp: 12936603.11
+      ir_gbp_block_var_delta_gbp: -1640539.68
+      ir_gbp_block_var_delta_pct: -11.25
+      base_aggregate_var_gbp: 70399375.27
+      d1_only_aggregate_var_gbp: 70299070.30
+      aggregate_var_delta_gbp: -100304.97
+      aggregate_var_delta_pct: -0.14
+      comment: >-
+        The transposed vol understates the GBP rates block by GBP 1.64m
+        (11.3%). With the liability duration gap closed the GBP rates block
+        is a small share of a well-diversified surplus VaR, so the AGGREGATE
+        barely moves (-0.14%) -- the defect is material where it bites and
+        invisible in the headline. That is itself the point: the scored
+        detection route is the vcv-sentinel recomputation against source
+        data, never a headline smell test. The realist corroboration signal
+        is correspondingly the ir_gbp block at 1.355% of assets vs its
+        1.4-1.7 band, not the aggregate.
+
+  - id: D2
+    room: 1
+    file: scenarios/seeded/positions_D2.json
+    field: positions[id=P028].rating   # Ford Motor Credit 7.35% 2027, US345397C353
+    match_any: [P028, US345397C353, positions_D2.json]   # see _defect_matches
+    original: HY
+    seeded: A
+    corruption: >-
+      The largest HY corporate in the book (market value GBP 15.22m at
+      2026-03, vs Virgin Media 13.17m and Ocado 11.28m) re-rated to A. The
+      rest of the file is identical to book/positions.json (50 positions,
+      4 PCF proxies untouched at HY).
+    detection_route: >-
+      scenarios/reference/ratings_ref.csv gives Ford Motor Credit
+      (US345397C353) as BB+ -> HY bucket, not A (live mode: public issuer
+      knowledge — S&P BB+ / Moody's Ba1). Corroborated by coupon-vs-rating
+      implausibility: a 7.35% coupon 1y USD bond priced on ust + A spread
+      is far rich to its own curve; no other A-bucket position carries a
+      coupon above 6%.
+    severity: high
+    direction: overstatement_of_value_understatement_of_credit_risk
+    materiality:   # d2_only isolation run vs outputs/2026-03 (same seed/sims)
+      base_p028_market_value_gbp: 15216082.95
+      seeded_p028_market_value_gbp: 15529431.32
+      p028_market_value_delta_gbp: 313348.37
+      p028_market_value_delta_pct: 2.06
+      base_p028_standalone_var_gbp: 2315761.41
+      seeded_p028_standalone_var_gbp: 2368562.29
+      p028_standalone_var_delta_gbp: 52800.88
+      p028_standalone_var_delta_pct: 2.28
+      base_credit_block_var_gbp: 12446374.66
+      seeded_credit_block_var_gbp: 12180223.26
+      credit_block_var_delta_gbp: -266151.40
+      credit_block_var_delta_pct: -2.14
+      base_aggregate_var_gbp: 70399375.27
+      d2_only_aggregate_var_gbp: 70175905.86
+      comment: >-
+        Re-rating HY->A tightens the spread used to price the bond, so its
+        market value is overstated by GBP 0.31m (2.1%). Its full-factor
+        standalone VaR RISES GBP 52.8k (2.3%) -- the position is a 1-year USD
+        bond whose standalone risk is FX-dominated, and the overstated value
+        scales the FX exposure -- while its spread risk migrates from the HY
+        factor (vol 0.012016) to the A factor (vol 0.002138), understating
+        the credit block VaR by GBP 0.27m (2.1%). Nothing here leaves a
+        realist band: the scored route is the holdings check against
+        ratings_ref.csv.
+
+  - id: D3A
+    room: 3
+    file: scenarios/seeded/draft_report_D3.md
+    field: aggregate 99.5% VaR headline (section 4)
+    original: 70399375.27    # true aggregate, outputs/2026-03/var_aggregate.json (Feb true: 71611503.42)
+    seeded: 97434744.37      # sum of the five block standalone VaRs, stated as "Aggregate 99.5% VaR" (Feb stated: 97033907.46)
+    corruption: >-
+      The five block standalone VaRs (all quoted accurately: ir_gbp 14.6,
+      ir_usd 6.9, credit 12.5, equity 58.4, fx 5.2) are SUMMED and the sum
+      presented as the aggregate 99.5% VaR, for both month-ends. The
+      diversification benefit (GBP 27.0m, ratio 0.723) is silently dropped.
+      Internally coherent — the table sums to the stated headline and the
+      month-on-month change (+GBP 0.4m) is consistent — so it cannot be
+      caught by smell, only by checking the engine output.
+    detection_route: >-
+      outputs/2026-03/var_aggregate.json: aggregate_var_gbp = 70,399,375.27;
+      the stated GBP 97.4m equals sum_standalone_blocks_gbp = 97,434,744.37
+      to its rounding. Overstatement +27,035,369.10 (= the diversification
+      benefit), i.e. the stated figure is 1.38x the true aggregate. Feb
+      likewise: stated 97,033,907.46 vs true 71,611,503.42.
+    severity: high
+    direction: overstatement
+
+  - id: D3B
+    room: 3
+    file: scenarios/seeded/draft_report_D3.md
+    field: FX driver sign in the surplus-attribution prose (section 3)
+    original: '+792558.96 GBP (fx step INCREASED surplus: GBPUSD 1.3491 -> 1.3173 raises the GBP value of USD assets by more than it raises the GBP value of the USD claims cohorts)'
+    seeded: 'stated as reducing surplus by GBP 0.8m ("reduced surplus by a further -GBP 0.8m on the translation of USD-denominated assets")'
+    corruption: >-
+      Exactly one attribution driver's sign flipped in the prose; the
+      magnitude (GBP 0.8m) is kept. All other drivers are accurate
+      (swap +11.7m, gilt -11.9m, ust +1.1m, spread -0.9m, equity -14.8m,
+      vcv 0.0, book 0.0, liabilities 0.0, residual 0.0).
+    detection_route: >-
+      outputs/attr_2026-02_to_2026-03/attribution.json mtm steps: step 6 (fx)
+      delta_gbp = +792,558.96. Also caught by additivity: the prose drivers
+      as stated sum to about -15.6m, not the -13.9m total the report itself
+      quotes.
+    severity: medium
+    direction: sign_flip
+
+  - id: D4
+    room: 1
+    file: scenarios/seeded/positions_D4.json
+    field: positions[id in PCF-001..PCF-004].rating   # all four private credit proxies
+    match_any: [PCF-001, PCF-002, PCF-003, PCF-004, pc_proxy_ref.csv, positions_D4.json]
+    original: HY
+    seeded: CCC
+    corruption: >-
+      In a copy of the March book (book/positions_2026-03.json, the +15% PC
+      sleeve), all four private-credit proxy positions have their selected
+      proxy rating changed HY -> CCC. Strategies are unchanged (senior direct
+      lending GBP, mid-market lending USD, opportunistic credit USD,
+      real-estate debt GBP) and every other field is identical to the clean
+      March book.
+    detection_route: >-
+      Strategy-vs-proxy-rating inconsistency against
+      scenarios/reference/pc_proxy_ref.csv: none of the four strategies
+      admits a CCC proxy (senior_direct_lending and real_estate_debt accept
+      BBB;HY, mid_market_lending and opportunistic_credit accept HY).
+      Materiality is driven by the CCC factor's market-calibrated level and
+      vol, both far above HY at 2026-03: spread level 0.0994 vs 0.0328
+      (+666bp), vol 0.02002 vs 0.012016 (+67%). Corroborated by @realist:
+      every PCF position lands above its private-credit band (GBP funds
+      14.02% standalone-VaR/MV vs band 7-13%, USD funds 19.28% vs 13-18%).
+    severity: high
+    direction: overstatement   # scored: the catch must characterise D4 as risk OVERSTATED
+    materiality:   # d4_only isolation run vs outputs/2026-03_marbook (clean March book, same seed/sims)
+      base_credit_block_var_gbp: 13344285.00
+      seeded_credit_block_var_gbp: 14444301.66
+      credit_block_var_delta_gbp: 1100016.66
+      credit_block_var_delta_pct: 8.24
+      base_asset_total_gbp: 979748702.81
+      seeded_asset_total_gbp: 942098537.68
+      asset_total_delta_gbp: -37650165.13
+      base_aggregate_var_gbp: 72263842.87
+      d4_only_aggregate_var_gbp: 72150071.08
+      aggregate_var_delta_gbp: -113771.79
+      aggregate_var_delta_pct: -0.16
+      spread_level_ccc_vs_hy_2026_03: [0.0994, 0.0328]
+      spread_vol_ccc_vs_hy_2026_03: [0.02002, 0.012016]
+      comment: >-
+        Pricing four performing-loan funds at a distressed CCC spread marks
+        the sleeve DOWN GBP 37.65m and raises the credit block VaR by GBP
+        1.10m (8.2%). The aggregate 99.5% VaR barely moves (-0.16%) because
+        the smaller asset base offsets the higher spread risk -- so the
+        overstatement is a SLEEVE-level fact, not a headline one, and the
+        scored catch is the holdings strategy-vs-proxy-rating check against
+        pc_proxy_ref.csv, characterised as an OVERSTATEMENT. The realist
+        corroborates on all four PCF positions (GBP funds 14.02% standalone
+        VaR / MV vs band 7-13, USD funds 19.28% vs 13-18) and on three
+        blocks (credit 1.533% of assets above [1.1, 1.5], ir_usd 0.847%
+        above [0.6, 0.8], fx 0.367% below [0.4, 0.9]).
+
+# A MATERIAL CHANGE, NOT AN ERROR. Scored alongside the defects (SPEC-APP
+# section 6): it must be SURFACED, with approximately the right magnitude,
+# and it must NOT be characterised as a defect. Missing it is a miss;
+# calling it an error is also a miss.
+must_flag_changes:
+  - id: MFC-PC15
+    room: 3                       # @warden's month-end summary owns this
+    kind: allocation_change
+    prev_book: book/positions.json
+    curr_book: book/positions_2026-03.json
+    prev_liabilities: book/liabilities.json
+    curr_liabilities: book/liabilities_2026-03.json
+    also_in: scenarios/seeded/positions_D2_D4.json   # combined demo book
+    field: private credit sleeve (PCF-001..PCF-004) notional
+    change: +15.0%                # 69,700,000 -> 80,155,000 notional
+    description: >-
+      Between the February and March books the balance sheet grows on BOTH
+      sides: about GBP 25.0m of premium inflow is invested (attribution step
+      8, +24,998,927.26 to surplus) against about GBP 20.2m of new reserves
+      (step 9, -20,249,564.25 to surplus), and within the inflow the private
+      credit sleeve takes a disproportionate share, rising 15% against a
+      pro-rata share of roughly a tenth of that. Two positive residuals of
+      similar size on opposite sides of the balance sheet is written
+      business, not investment performance; the excess over pro-rata in the
+      least liquid sleeve is a deliberate tilt.
+    expected_magnitudes:
+      book_step_mtm_gbp: 24998927.26        # attr_2026-02_to_2026-03_books, step 8
+      liability_step_mtm_gbp: -20249564.25  # step 9
+      book_step_var_gbp: 1424638.51         # step 8 dVaR
+      liability_step_var_gbp: 439829.10     # step 9 dVaR
+      pc_notional_prev_gbp: 69700000
+      pc_notional_curr_gbp: 80155000
+    characterisation: >-
+      Near-zero MTM effect on the holdings held throughout, positive risk
+      effect, and a deliberate allocation decision on top of a
+      proportionate growth in the book. Never "defect", "error" or
+      "seeded".
+    detection_route: >-
+      @warden's month-end summary (room 3): the market / flows / decision
+      split over both sides of the balance sheet, quoting the sleeve flow
+      against its pro-rata share. Accepted phrasings in the scorecard are
+      "material allocation change" or "it is a decision", together with
+      "private credit" (or the changed book file name); a hit that also
+      says "defect"/"seeded"/"flag —" scores as mischaracterised.
+
+must_not_flag:
+  - id: MNF-RISKOFF
+    description: >-
+      The legitimate Feb->Mar risk-off repricing. Every one of these moves is
+      real market movement present in data/processed/*.csv and correctly
+      calibrated into assumptions/2026-03.yaml; recompute_vol and source-data
+      comparison confirm them. They must be narrated as market movement, NOT
+      flagged as errors. Flagging any item below as a defect counts against
+      detection precision.
+    facts:
+      curves:
+        gbp_swap_2y: '0.033095 -> 0.041623 (+85.3bp)'
+        gbp_swap_10y: '0.03882 -> 0.043748 (+49.3bp)'
+        gbp_gilt_10y: '0.043519 -> 0.049442 (+59.2bp)'
+        ust_10y: '0.0397 -> 0.0430 (+33.0bp)'
+      spreads:
+        AA: '0.0054 -> 0.0056 (+2bp)'
+        A: '0.0071 -> 0.0075 (+4bp)'
+        BBB: '0.0107 -> 0.0113 (+6bp)'
+        HY: '0.0310 -> 0.0328 (+18bp)'
+        CCC: '0.0950 -> 0.0994 (+44bp)'
+      equity:
+        FTSE100: '10910.6 -> 10176.5 (-6.73%)'
+        SP500: '6878.88 -> 6528.52 (-5.09%)'
+        SX5E: '6138.41 -> 5569.73 (-9.26%)'
+      fx:
+        GBPUSD: '1.3491 -> 1.3173 (-2.36%)'
+      surplus_attribution_gbp:   # outputs/attr_2026-02_to_2026-03 (single book)
+        total: '-13923792.65 (158713618.06 -> 144789825.41)'
+        gbp_swap: '+11703186.98 (GBP claims cohorts discount harder as the swap curve rose)'
+        gbp_gilt: '-11853703.04'
+        ust: '+1132359.05 (the USD cohorts discount on the Treasury curve and fall by more than the USD bonds)'
+        spread: '-881866.51'
+        equity: '-14816328.09'
+        fx: '+792558.96 (sterling depreciation lifts the GBP value of USD assets by more than it lifts the USD cohorts)'
+        vcv: '0.0'
+        book: '0.0'
+        liabilities: '0.0'
+        residual: '0.0'
+      var_attribution_gbp:
+        total: '-1212128.15 (71611503.42 -> 70399375.27)'
+        main_steps: 'equity -3858154.98 and vcv +2361894.40 dominate; fx +732847.45, gbp_gilt -227539.45, ust -153964.04, gbp_swap -40287.84, spread -26923.70; book and liabilities 0.0'
+    rationale: >-
+      Large month-on-month moves that trace cleanly to source data are the
+      discrimination control of the demo: the agents must distinguish genuine
+      risk-off repricing (rates up, spreads wider, equities down, sterling
+      weaker) from the seeded corruptions. In particular, the +85bp move in
+      the 2y swap rate and the -9.3% SX5E fall are legitimate; the lone ~35%
+      dip in the 10y swap VOL (D1) is not. Likewise the +44bp CCC spread
+      widening is real market data — what is wrong in D4 is the CHOICE of the
+      CCC proxy, not the CCC calibration.
+
+scoring_notes:
+  - Detection recall counts D1, D2, D3A, D3B, D4 (5 findable defects) plus
+    MFC-PC15 (the must-flag allocation change).
+  - D4's direction (overstatement) is part of a correct catch; an
+    understatement characterisation scores as a miss.
+  - Everything else in draft_report_D3.md is accurate to its rounding (0.1m);
+    only the D3A headline figures and the D3B fx sentence are defective.
+  - Preview-run figures under meta.preview_runs and the per-defect
+    `materiality` blocks are REGENERATED against the four-cohort P&C
+    liability book (see meta.preview_runs.note).
+  - >-
+    scenarios/reference/realist_priors.yaml (v3) is corroboration only: clean
+    runs produce zero out-of-band positions AND zero out-of-band portfolio
+    ratios (verified across all eight month-ends plus both March-book runs);
+    D1 shows a below-band ir_gbp block (1.355% of assets vs 1.40-1.70); D4
+    shows all four PCFs above band plus credit above, ir_usd above and fx
+    below. Ground truth does not require realist catches.

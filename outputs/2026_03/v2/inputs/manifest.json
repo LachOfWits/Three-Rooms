@@ -1,0 +1,19 @@
+{
+  "run_id": null,
+  "asof": "2026-03",
+  "kind": "base",
+  "label": "2603_v2",
+  "version": 2,
+  "run_dir": "outputs/2026_03/v2",
+  "parent_run_id": null,
+  "assumptions_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\assumptions\\2026-03.yaml",
+  "assumptions_derived_from": null,
+  "adjustment_changes": null,
+  "book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\book\\positions_2026-03.json",
+  "liabilities_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\book\\liabilities_2026-03.json",
+  "seeded": false,
+  "seed": 20260831,
+  "sims": 50000,
+  "note": "March month-end, March book and March liability cohorts \u2014 the demo book change (both sides move)",
+  "created_at": "regenerated 2026-08-30 (PENDING-BATCH2 s1 layout; aggregate VaR reproduces attr_2026_02_v1__2026_03_v2 to the penny)"
+}

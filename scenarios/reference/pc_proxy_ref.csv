@@ -1,0 +1,5 @@
+strategy,acceptable_proxy_ratings,typical_proxy,notes
+senior_direct_lending,BBB;HY,HY,First-lien senior secured sponsor lending; performing book. Spread experience sits between public BBB and broad HY; CCC implies distressed/deep-junk pricing and is not an acceptable proxy.
+mid_market_lending,HY,HY,Unitranche/second-lien mid-market corporate loans; single-B-equivalent obligors map to the broad HY spread factor. CCC is a distressed bucket and outside the acceptable band.
+opportunistic_credit,HY,HY,Special-situations and stressed (not distressed) performing credit; broad HY is the accepted proxy. A CCC proxy would price the whole sleeve as distressed and materially overstate spread level and vol.
+real_estate_debt,BBB;HY,HY,Senior commercial real-estate mortgage lending with hard-asset security; experience is IG-crossover to HY. CCC is not an acceptable proxy.

@@ -1,0 +1,18 @@
+{
+  "level": 0.995,
+  "horizon_years": 1,
+  "blocks": {
+    "ir_gbp": 14577142.7975719,
+    "ir_usd": 6848346.294010508,
+    "credit": 12446374.657068303,
+    "equity": 58413053.95656228,
+    "fx": 5149826.665353026
+  },
+  "block_definitions": {
+    "ir_gbp": "gbp_swap + gbp_gilt",
+    "ir_usd": "ust",
+    "credit": "spread",
+    "equity": "equity",
+    "fx": "fx"
+  }
+}

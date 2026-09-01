@@ -1,0 +1,21 @@
+{
+ "label": "March 2026 first live cycle",
+ "slug": "march-2026-first-live-cycle",
+ "saved_at": "2026-09-01T12:36:01.625578+00:00",
+ "mode": "live",
+ "model": "claude-opus-5",
+ "effort": "low",
+ "note": "",
+ "counts": {
+  "posts_published": 23,
+  "posts_suppressed": 0,
+  "tool_calls": 186,
+  "runs": 3,
+  "research_notes": 2,
+  "web_sources": 214
+ },
+ "research_notes": [
+  "2026_03_focused.md",
+  "2026_03_wide-eye.md"
+ ]
+}

@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "prev_dir": "outputs/2026_02/v1/pricing",
+    "curr_dir": "outputs/2026_03/v2/pricing",
+    "prev_assumptions_path": "assumptions/2026-02.yaml",
+    "prev_assumptions_sha256": "358dcc86d20fb05eec2ea5cc0990e6773e7009f5d997b03c5fbe27adc0032819",
+    "curr_assumptions_path": "assumptions/2026-03.yaml",
+    "curr_assumptions_sha256": "fe563c3e4f61b9bddd5a53fb3fe8c4bb954c9859e67602ba80523c596a69030a",
+    "prev_book_path": "book/positions.json",
+    "prev_book_sha256": "254873dbf2c11c867a8663f88843e07eec9e194c764e99fc749180ea7fa33ace",
+    "curr_book_path": "book/positions_2026-03.json",
+    "curr_book_sha256": "4770389dc4cefac0ec41069f767a5f6e9e7aeefda4ceac134dd8fc2a061c6d3c",
+    "book_path": "book/positions_2026-03.json",
+    "book_sha256": "4770389dc4cefac0ec41069f767a5f6e9e7aeefda4ceac134dd8fc2a061c6d3c",
+    "prev_liabilities_path": "book/liabilities.json",
+    "prev_liabilities_sha256": "4259cdb22a6789ec3273fa5facad91791f1494946dcf01b4631c6661e2ca2919",
+    "curr_liabilities_path": "book/liabilities_2026-03.json",
+    "curr_liabilities_sha256": "89ab4b4ddaa7a0d944b88f998be8c9e38e630c0d6db315b2933f9696575117b0",
+    "liabilities_sha256": "89ab4b4ddaa7a0d944b88f998be8c9e38e630c0d6db315b2933f9696575117b0",
+    "seed": 20260831,
+    "n_sims": 50000,
+    "engine_git_rev": "461ee129cd3dcca005b2245412fac40e83b98e51",
+    "step_order": [
+      "gbp_swap",
+      "gbp_gilt",
+      "ust",
+      "spread",
+      "equity",
+      "fx",
+      "vcv",
+      "book",
+      "liabilities"
+    ],
+    "note": "Totals are from the stored prev/curr outputs; steps are sequential recomputations from the prev state. The residual is explicit and never absorbed into a step."
+  },
+  "mtm": {
+    "prev_surplus_gbp": 158713618.0550716,
+    "curr_surplus_gbp": 149539188.42078137,
+    "total_change_gbp": -9174429.634290218,
+    "recomputed_prev_surplus_gbp": 158713618.0550716,
+    "recomputed_curr_surplus_gbp": 149539188.42078137,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": 11703186.980542064
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -11853703.04036069
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": 1132359.051938057
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -881866.5077702999
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -14816328.089102626
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": 792558.9595605135
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 0.0
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": 24998927.25924933
+      },
+      {
+        "step": 9,
+        "name": "liabilities",
+        "delta_gbp": -20249564.248346567
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": -9174429.634290218,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": -9174429.634290218,
+      "total_gbp": -9174429.634290218,
+      "additive_within_1e-6": true
+    }
+  },
+  "var": {
+    "prev_aggregate_var_gbp": 71611503.42134199,
+    "curr_aggregate_var_gbp": 72263842.87167396,
+    "total_change_gbp": 652339.450331971,
+    "recomputed_prev_var_gbp": 71611503.42134199,
+    "recomputed_curr_var_gbp": 72263842.87167396,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": -40287.838894099
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -227539.4537679553
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": -153964.03867344558
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -26923.69777984917
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -3858154.9761754423
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": 732847.4494155645
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 2361894.4039875567
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": 1424638.5053833127
+      },
+      {
+        "step": 9,
+        "name": "liabilities",
+        "delta_gbp": 439829.0968363285
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": 652339.450331971,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": 652339.450331971,
+      "total_gbp": 652339.450331971,
+      "additive_within_1e-6": true
+    }
+  }
+}

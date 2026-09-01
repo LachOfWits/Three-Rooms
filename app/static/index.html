@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three-Rooms</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PENDING-JUDGE §2. First thing a judge sees. Blocks the app until they
+     choose, because landing on an empty feed with no explanation is the
+     worst possible first impression of a system whose whole point is what
+     the agents say. -->
+<div id="welcome" class="welcome-scrim" hidden>
+  <div class="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-h">
+    <div class="welcome-head">
+      <span class="hdr-mark" aria-hidden="true"></span>
+      <h1 id="welcome-h">THREE-ROOMS</h1>
+    </div>
+    <p class="welcome-sub">An agentic month-end.</p>
+
+    <label class="wf">
+      <span>Operator name</span>
+      <input id="w-operator" type="text" autocomplete="off" spellcheck="false"
+             placeholder="signs posts and gate decisions">
+    </label>
+
+    <label class="wf">
+      <span>API key <em>(required for live responses)</em></span>
+      <input id="w-key" type="password" autocomplete="off" spellcheck="false"
+             placeholder="sk-ant-…">
+      <small>Held in memory for this session only. Never written to disk,
+        never logged, never sent anywhere but Anthropic.</small>
+    </label>
+
+    <div class="wf-row">
+      <label class="wf"><span>Model</span>
+        <select id="w-model"></select></label>
+      <label class="wf"><span>Effort</span>
+        <select id="w-effort"></select></label>
+    </div>
+
+    <label class="wf" id="w-cycle-wrap" hidden>
+      <span>Saved cycle</span>
+      <select id="w-cycle"></select>
+      <small id="w-cycle-note"></small>
+    </label>
+
+    <div class="welcome-actions">
+      <button id="w-open" class="btn-primary">Open saved cycle</button>
+      <button id="w-fresh" class="btn-ghost">Start fresh</button>
+    </div>
+    <p class="welcome-foot" id="w-foot"></p>
+  </div>
+</div>
+
+<header id="hdr">
+  <!-- PENDING-ROSTER Q: title + 1/2/3 pill read as one unit, hard left.
+       Research sits just right of the pill, separated by a hairline. -->
+  <div class="hdr-left">
+    <span class="hdr-mark" aria-hidden="true"></span>
+    <span class="hdr-title">THREE-ROOMS</span>
+    <div id="switch" class="switcher" role="tablist" aria-label="Rooms" tabindex="0"></div>
+    <span class="hdr-sep" aria-hidden="true"></span>
+    <button class="research-tab" data-act="tab-research" id="research-tab">Research</button>
+  </div>
+  <div class="hdr-status" id="hdr-status">
+    <!-- mode badge, seed, run anchor, sse dot, bell, theme toggle -->
+  </div>
+</header>
+
+<main id="layout">
+  <div id="dash-wrap" class="panel-wrap">
+    <aside id="dash" class="panel" aria-label="Dashboard"></aside>
+    <button id="dash-chev" class="panel-chev left" data-act="panel-toggle"
+            data-panel="dash"></button>
+  </div>
+
+  <section id="center" aria-label="Feed">
+    <div id="feed-head"></div>
+    <div id="feed-scroll">
+      <div id="feed"></div>
+      <div id="suppressed-drawer"></div>
+    </div>
+    <div id="feed-composer"></div>
+  </section>
+
+  <div id="rail-wrap" class="panel-wrap">
+    <aside id="rail" class="panel" aria-label="Controls"></aside>
+    <button id="rail-chev" class="panel-chev right" data-act="panel-toggle"
+            data-panel="rail"></button>
+  </div>
+</main>
+
+<!-- Thread slide-in -->
+<div id="thread-veil" class="veil" hidden></div>
+<section id="thread" class="thread" aria-label="Thread" hidden>
+  <div id="thread-head"></div>
+  <div id="thread-body"></div>
+  <div id="thread-composer"></div>
+</section>
+
+<!-- Agent profile slide-out (PENDING-BATCH2 §5) — the same right-hand
+     surface as the thread, stacked above it so a profile opened from inside
+     a thread returns to that thread on close. -->
+<div id="profile-veil" class="veil" hidden></div>
+<section id="profile" class="thread profile" aria-label="Agent profile" hidden>
+  <div id="profile-head"></div>
+  <div id="profile-body"></div>
+</section>
+
+<!-- Agent edit / builder modal -->
+<div id="modal-veil" class="veil" hidden></div>
+<section id="agent-modal" class="modal" hidden></section>
+
+<!-- Run control modal (J) -->
+<section id="run-modal" class="modal" hidden></section>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script src="util.js"></script>
+<script src="avatar.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

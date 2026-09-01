@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "seed": 20260831,
+    "n_sims": 3000,
+    "assumptions_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_assumptions_next.yaml",
+    "assumptions_sha256": "1384d6d3649c99381b642da5b304e84ba76a0ce2fb772281beded091c975f7ed",
+    "book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_positions_next.json",
+    "book_sha256": "e055398c4081bf9c5ab30a7057bbad57046d81a7b8527031bfe29d28de40fc0b",
+    "liabilities_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_liabilities.json",
+    "liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "engine_git_rev": "4b86ebdc1ae3ad2ccfe626ff172f45c688cfc837",
+    "asof": "2026-07-31"
+  },
+  "positions": [
+    {
+      "id": "T001",
+      "name": "Toy gilt 5% 8y",
+      "type": "govt_bond",
+      "currency": "GBP",
+      "market_value_gbp": 1036454.1503212294
+    },
+    {
+      "id": "T002",
+      "name": "Toy USD BBB 4.5% 2y",
+      "type": "corp_bond",
+      "currency": "USD",
+      "market_value_gbp": 1526290.9224234608
+    },
+    {
+      "id": "T003",
+      "name": "Toy UK equity",
+      "type": "equity",
+      "currency": "GBP",
+      "market_value_gbp": 105000.0
+    },
+    {
+      "id": "T004",
+      "name": "Toy US equity",
+      "type": "equity",
+      "currency": "USD",
+      "market_value_gbp": 148717.94871794872
+    },
+    {
+      "id": "T005",
+      "name": "GBP cash",
+      "type": "cash",
+      "currency": "GBP",
+      "market_value_gbp": 200000.0
+    },
+    {
+      "id": "T006",
+      "name": "USD cash",
+      "type": "cash",
+      "currency": "USD",
+      "market_value_gbp": 769230.7692307692
+    },
+    {
+      "id": "PCF-100",
+      "name": "Toy PC fund proxy 9% 4y",
+      "type": "corp_bond",
+      "currency": "GBP",
+      "market_value_gbp": 250934.0241767865
+    }
+  ],
+  "asset_total_gbp": 4036627.8148701945,
+  "liability_pv_gbp": 797943.1013711669,
+  "liability_cohorts": [
+    {
+      "id": "LEGACY-GBP",
+      "class": "legacy",
+      "currency": "GBP",
+      "curve": "gbp_swap",
+      "pv_gbp": 797943.1013711669
+    }
+  ],
+  "surplus_gbp": 3238684.713499028
+}

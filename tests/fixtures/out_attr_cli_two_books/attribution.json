@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "prev_dir": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\out_attr2_prev",
+    "curr_dir": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\out_attr2_curr",
+    "prev_assumptions_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_assumptions.yaml",
+    "prev_assumptions_sha256": "67d52fd1658c6ec4be6eb919524ed5827895997d1979fe0063fbb2538cb456ae",
+    "curr_assumptions_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_assumptions_next.yaml",
+    "curr_assumptions_sha256": "1384d6d3649c99381b642da5b304e84ba76a0ce2fb772281beded091c975f7ed",
+    "prev_book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_positions.json",
+    "prev_book_sha256": "d901b2b9485e33bc4b510eafe11cd1db3f589b2fb79d6c0c4266f720db6c02c4",
+    "curr_book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_positions_next.json",
+    "curr_book_sha256": "e055398c4081bf9c5ab30a7057bbad57046d81a7b8527031bfe29d28de40fc0b",
+    "book_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_positions_next.json",
+    "book_sha256": "e055398c4081bf9c5ab30a7057bbad57046d81a7b8527031bfe29d28de40fc0b",
+    "prev_liabilities_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_liabilities.json",
+    "prev_liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "curr_liabilities_path": "C:\\Users\\lachl\\Documents\\AI Symposium 2026 IFoA\\prototype\\tests\\fixtures\\toy_liabilities.json",
+    "curr_liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "liabilities_sha256": "d52fa17df3a8f5a7ec4a01e4f56d05f32753e464304a7a3e65349d2f057fa6d9",
+    "seed": 20260831,
+    "n_sims": 3000,
+    "engine_git_rev": "4b86ebdc1ae3ad2ccfe626ff172f45c688cfc837",
+    "step_order": [
+      "gbp_swap",
+      "gbp_gilt",
+      "ust",
+      "spread",
+      "equity",
+      "fx",
+      "vcv",
+      "book",
+      "liabilities"
+    ],
+    "note": "Totals are from the stored prev/curr outputs; steps are sequential recomputations from the prev state. The residual is explicit and never absorbed into a step."
+  },
+  "mtm": {
+    "prev_surplus_gbp": 3410262.367967372,
+    "curr_surplus_gbp": 3238684.713499028,
+    "total_change_gbp": -171577.65446834406,
+    "recomputed_prev_surplus_gbp": 3410262.367967372,
+    "recomputed_curr_surplus_gbp": 3238684.713499028,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": 13146.476564336102
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -30873.29842827376
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": 5975.502846629359
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -12657.44067960186
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -333.33333333348855
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": -97769.58561488707
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 0.0
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": -49065.975823213346
+      },
+      {
+        "step": 9,
+        "name": "liabilities",
+        "delta_gbp": 0.0
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": -171577.65446834406,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": -171577.65446834406,
+      "total_gbp": -171577.65446834406,
+      "additive_within_1e-6": true
+    }
+  },
+  "var": {
+    "prev_aggregate_var_gbp": 468450.2722538169,
+    "curr_aggregate_var_gbp": 502731.8581384693,
+    "total_change_gbp": 34281.58588465239,
+    "recomputed_prev_var_gbp": 468450.2722538169,
+    "recomputed_curr_var_gbp": 502731.8581384693,
+    "steps": [
+      {
+        "step": 1,
+        "name": "gbp_swap",
+        "delta_gbp": -161.03515926736873
+      },
+      {
+        "step": 2,
+        "name": "gbp_gilt",
+        "delta_gbp": -941.337272522971
+      },
+      {
+        "step": 3,
+        "name": "ust",
+        "delta_gbp": 1096.3422027943307
+      },
+      {
+        "step": 4,
+        "name": "spread",
+        "delta_gbp": -2321.972423552943
+      },
+      {
+        "step": 5,
+        "name": "equity",
+        "delta_gbp": -1922.470513122389
+      },
+      {
+        "step": 6,
+        "name": "fx",
+        "delta_gbp": -16865.16196879919
+      },
+      {
+        "step": 7,
+        "name": "vcv",
+        "delta_gbp": 37203.35567297193
+      },
+      {
+        "step": 8,
+        "name": "book",
+        "delta_gbp": 18193.865346150997
+      },
+      {
+        "step": 9,
+        "name": "liabilities",
+        "delta_gbp": 0.0
+      }
+    ],
+    "residual_gbp": 0.0,
+    "additivity_check": {
+      "sum_steps_gbp": 34281.58588465239,
+      "residual_gbp": 0.0,
+      "sum_steps_plus_residual_gbp": 34281.58588465239,
+      "total_gbp": 34281.58588465239,
+      "additive_within_1e-6": true
+    }
+  }
+}
